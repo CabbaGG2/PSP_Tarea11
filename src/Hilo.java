@@ -1,16 +1,37 @@
 import java.util.Scanner;
 
-// src/Hilo.java
+/**
+ *
+ * Programa que crea una serie de hilos que se ejecutan de forma secuencial.
+ * Cada hilo imprime su nombre y un número de iteración, luego duerme por un
+ * tiempo aleatorio entre 1 y 6 segundos antes de continuar con la siguiente
+ * iteración. El número de hilos a crear es especificado por el usuario al
+ * inicio del programa.
+ */
 public class Hilo extends Thread {
     private static int numeroHilos = 5;
     private int idHilo;
     private Hilo siguienteHilo;
 
+    /**
+     * Constructor que inicializa el hilo con un ID específico y le asigna un
+     * nombre basado en ese ID.
+     *
+     * @param idHilo El ID del hilo, utilizado para nombrarlo y para crear el
+     *               siguiente hilo en la secuencia.
+     */
     public Hilo(int idHilo) {
         super("[Hilo-" + idHilo + "]");
         this.idHilo = idHilo;
     }
 
+    /**
+     * Método que define el comportamiento del hilo. Cada hilo crea el siguiente
+     * hilo en la secuencia (si no ha alcanzado el número máximo de hilos),
+     * luego itera cinco veces, imprimiendo su nombre y número de iteración,
+     * seguido de una pausa aleatoria entre 1 y 6 segundos. Finalmente, espera a
+     * que el siguiente hilo termine antes de finalizar.
+     */
     @Override
     public void run() {
         // Esto crea el siguiente hilo y lo inicializa
@@ -42,6 +63,12 @@ public class Hilo extends Thread {
         System.out.println("Acabó el hilo: " + getName());
     }
 
+    /**
+     * Método principal que inicia el programa. Solicita al usuario el número de
+     * hilos a crear y maneja la creación y ejecución de los hilos.
+     *
+     * @param args Argumentos de línea de comandos (no se usan).
+     */
     public static void main(String[] args) {
         System.out.println("Programa inicializado");
         do {
