@@ -11,11 +11,6 @@ public class Hilo extends Thread {
 
     @Override
     public void run() {
-        // Crear el siguiente hilo si corresponde
-        if (idHilo < 5) {
-            siguienteHilo = new Hilo(idHilo + 1);
-            siguienteHilo.start();
-        }
 
         // Iteraciones del hilo actual
         for (int i = 0; i < numeroIteraciones; i++) {
@@ -25,6 +20,12 @@ public class Hilo extends Thread {
             } catch (InterruptedException e) {
                 System.out.println("Ocurrió un error: " + e.getMessage());
             }
+        }
+
+        // Crear el siguiente hilo si corresponde
+        if (idHilo < 5) {
+            siguienteHilo = new Hilo(idHilo + 1);
+            siguienteHilo.start();
         }
 
         // Esperar a que termine el hijo (si existe)
